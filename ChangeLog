@@ -1,0 +1,7 @@
+2010-12-14  Dibyendu Das <dibyendu.das.in@gmail.com>
+
+	* Initial import of version that went into GTK+/Gnome Application
+	Development, first edition. All ChangeLog entries above this
+	adapt the program to new GNOME versions, fix bugs, or otherwise
+	enhance it.
+
