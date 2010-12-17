@@ -4,8 +4,7 @@ Name=GSquares
 GenericName=Strategy Game
 Comment=Game of Box & Dots
 Exec=GSquares
+TryExec=GSquares
 Icon=gsquares.png
-NoDisplay=false
 Terminal=false
 Type=Application
-
