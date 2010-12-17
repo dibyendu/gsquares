@@ -1,0 +1,11 @@
+[Desktop Entry]
+Categories=Game;GTK;BoardGame;
+Name=GSquares
+GenericName=Strategy Game
+Comment=Game of Box & Dots
+Exec=GSquares
+Icon=gsquares.png
+NoDisplay=false
+Terminal=false
+Type=Application
+
