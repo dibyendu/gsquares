@@ -338,12 +338,12 @@ dataInitializer(char **player1, char **player2, const int *horizontalLines,
 
     gtk_widget_destroy(data->window);
 
-    pango_font_description_free(font);
-    //free(pixbuf);
+    pango_font_description_free(font); 
     free(data->player1Name);
     free(data->player2Name);
     g_slice_free(Data, data);
-
+    //free(pixbuf);
+    
     return true;
 }
 
