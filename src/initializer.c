@@ -261,6 +261,7 @@ dataInitializer(char **player1, char **player2, const int *horizontalLines,
             PLAYER_NAME_MAX_LENGTH);
     gtk_entry_set_max_length(GTK_ENTRY(data->player2Entry),
             PLAYER_NAME_MAX_LENGTH);
+    gtk_entry_set_text(GTK_ENTRY(data->player1Entry), getenv("USER"));
     gtk_box_pack_start(GTK_BOX(vbox), data->player1Entry, TRUE, TRUE, 5);
     gtk_box_pack_start(GTK_BOX(vbox), data->player2Entry, TRUE, TRUE, 5);
     gtk_box_pack_start(GTK_BOX(hbox_root), vbox, FALSE, FALSE, 0);
