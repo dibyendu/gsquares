@@ -1,4 +1,4 @@
-"GSquares" --- A Simple Turn-Based Strategy Game written in GTK+
+"GSquares" --- A Simple Turn-Based Strategy Game written in C using GTK+ & Cairo library
 
  Author: Dibyendu Das
 
