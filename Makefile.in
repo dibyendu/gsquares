@@ -77,9 +77,8 @@ am__nobase_list = $(am__nobase_strip_setup); \
 am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
-am__installdirs = "$(DESTDIR)$(Applicationsdir)" \
-	"$(DESTDIR)$(Licensedir)"
-DATA = $(Applications_DATA) $(License_DATA)
+am__installdirs = "$(DESTDIR)$(gamedir)" "$(DESTDIR)$(licensedir)"
+DATA = $(game_DATA) $(license_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
@@ -212,14 +211,10 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = src pixmaps
-EXTRA_DIST = \
-       GSquares.desktop   \
-       COPYING
-
-Applicationsdir = $(datadir)/games
-Applications_DATA = GSquares.desktop
-Licensedir = $(datadir)/license
-License_DATA = COPYING
+licensedir = $(datadir)/license
+license_DATA = COPYING
+gamedir = $(datadir)/gsquares
+game_DATA = gsquares.desktop
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -275,46 +270,46 @@ $(srcdir)/config.h.in: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 
 distclean-hdr:
 	-rm -f config.h stamp-h1
-install-ApplicationsDATA: $(Applications_DATA)
+install-gameDATA: $(game_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(Applicationsdir)" || $(MKDIR_P) "$(DESTDIR)$(Applicationsdir)"
-	@list='$(Applications_DATA)'; test -n "$(Applicationsdir)" || list=; \
+	test -z "$(gamedir)" || $(MKDIR_P) "$(DESTDIR)$(gamedir)"
+	@list='$(game_DATA)'; test -n "$(gamedir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(Applicationsdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(Applicationsdir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(gamedir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(gamedir)" || exit $$?; \
 	done
 
-uninstall-ApplicationsDATA:
+uninstall-gameDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(Applications_DATA)'; test -n "$(Applicationsdir)" || list=; \
+	@list='$(game_DATA)'; test -n "$(gamedir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(Applicationsdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(Applicationsdir)" && rm -f $$files
-install-LicenseDATA: $(License_DATA)
+	echo " ( cd '$(DESTDIR)$(gamedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(gamedir)" && rm -f $$files
+install-licenseDATA: $(license_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(Licensedir)" || $(MKDIR_P) "$(DESTDIR)$(Licensedir)"
-	@list='$(License_DATA)'; test -n "$(Licensedir)" || list=; \
+	test -z "$(licensedir)" || $(MKDIR_P) "$(DESTDIR)$(licensedir)"
+	@list='$(license_DATA)'; test -n "$(licensedir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(Licensedir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(Licensedir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(licensedir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(licensedir)" || exit $$?; \
 	done
 
-uninstall-LicenseDATA:
+uninstall-licenseDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(License_DATA)'; test -n "$(Licensedir)" || list=; \
+	@list='$(license_DATA)'; test -n "$(licensedir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(Licensedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(Licensedir)" && rm -f $$files
+	echo " ( cd '$(DESTDIR)$(licensedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(licensedir)" && rm -f $$files
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run `make' without going through this Makefile.
@@ -631,7 +626,7 @@ check: check-recursive
 all-am: Makefile $(DATA) config.h
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(Applicationsdir)" "$(DESTDIR)$(Licensedir)"; do \
+	for dir in "$(DESTDIR)$(gamedir)" "$(DESTDIR)$(licensedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -680,7 +675,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-ApplicationsDATA install-LicenseDATA
+install-data-am: install-gameDATA install-licenseDATA
 
 install-dvi: install-dvi-recursive
 
@@ -726,7 +721,7 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-ApplicationsDATA uninstall-LicenseDATA
+uninstall-am: uninstall-gameDATA uninstall-licenseDATA
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) all \
 	ctags-recursive install-am install-strip tags-recursive
@@ -737,16 +732,16 @@ uninstall-am: uninstall-ApplicationsDATA uninstall-LicenseDATA
 	dist-lzma dist-shar dist-tarZ dist-xz dist-zip distcheck \
 	distclean distclean-generic distclean-hdr distclean-tags \
 	distcleancheck distdir distuninstallcheck dvi dvi-am html \
-	html-am info info-am install install-ApplicationsDATA \
-	install-LicenseDATA install-am install-data install-data-am \
-	install-dvi install-dvi-am install-exec install-exec-am \
-	install-html install-html-am install-info install-info-am \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
-	pdf-am ps ps-am tags tags-recursive uninstall \
-	uninstall-ApplicationsDATA uninstall-LicenseDATA uninstall-am
+	html-am info info-am install install-am install-data \
+	install-data-am install-dvi install-dvi-am install-exec \
+	install-exec-am install-gameDATA install-html install-html-am \
+	install-info install-info-am install-licenseDATA install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am tags \
+	tags-recursive uninstall uninstall-am uninstall-gameDATA \
+	uninstall-licenseDATA
 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
