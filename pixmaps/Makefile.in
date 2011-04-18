@@ -155,9 +155,13 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-EXTRA_DIST = *.png
 pixmapdir = $(datadir)/pixmaps
-pixmap_DATA = *.png
+pixmap_DATA = \
+	happy.png	\
+	sad.png		\
+	tie.png		\
+	icon.png
+
 all: all-am
 
 .SUFFIXES:
@@ -362,4 +366,4 @@ uninstall-am: uninstall-pixmapDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
-.NOEXPORT: 
+.NOEXPORT:
