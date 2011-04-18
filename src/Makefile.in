@@ -32,7 +32,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = GSquares$(EXEEXT)
+bin_PROGRAMS = gsquares$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/paths.h.in
@@ -46,13 +46,11 @@ CONFIG_CLEAN_FILES = paths.h
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_GSquares_OBJECTS = about.$(OBJEXT) gameBoard.$(OBJEXT) \
-	main.$(OBJEXT) result.$(OBJEXT) computerLogic.$(OBJEXT) \
-	initializer.$(OBJEXT) playerLogic.$(OBJEXT)
-GSquares_OBJECTS = $(am_GSquares_OBJECTS)
-GSquares_LDADD = $(LDADD)
-GSquares_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(GSquares_LDFLAGS) \
-	$(LDFLAGS) -o $@
+am_gsquares_OBJECTS = about.$(OBJEXT) computerLogic.$(OBJEXT) \
+	gameBoard.$(OBJEXT) initializer.$(OBJEXT) main.$(OBJEXT) \
+	playerLogic.$(OBJEXT) result.$(OBJEXT)
+gsquares_OBJECTS = $(am_gsquares_OBJECTS)
+gsquares_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -61,8 +59,8 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(GSquares_SOURCES)
-DIST_SOURCES = $(GSquares_SOURCES)
+SOURCES = $(gsquares_SOURCES)
+DIST_SOURCES = $(gsquares_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -153,16 +151,21 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-GSquares_SOURCES = about.c          \
-                   gameBoard.c      \
-                   main.c           \
-                   result.c         \
-                   computerLogic.c  \
-                   initializer.c    \
-                   playerLogic.c
+gsquares_SOURCES = \
+        about.c           	\
+        computerLogic.c         \
+        gameBoard.c		\
+	initializer.c		\
+	main.c			\
+	playerLogic.c		\
+	result.c		\
+	attribute.h		\
+	gameBoard.h		\
+	gameLogic.h		\
+	gsquares.h		\
+	initializer.h		\
+	paths.h
 
-GSquares_LDFLAGS = @LDFLAGS@ -lm
-INCLUDES = @CFLAGS@
 all: all-am
 
 .SUFFIXES:
@@ -236,9 +239,9 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
-GSquares$(EXEEXT): $(GSquares_OBJECTS) $(GSquares_DEPENDENCIES) 
-	@rm -f GSquares$(EXEEXT)
-	$(GSquares_LINK) $(GSquares_OBJECTS) $(GSquares_LDADD) $(LIBS)
+gsquares$(EXEEXT): $(gsquares_OBJECTS) $(gsquares_DEPENDENCIES) 
+	@rm -f gsquares$(EXEEXT)
+	$(LINK) $(gsquares_OBJECTS) $(gsquares_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
