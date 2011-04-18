@@ -43,4 +43,3 @@ AC_OUTPUT([Makefile     \
             src/Makefile  \
             src/paths.h   \
             pixmaps/Makefile])
-
