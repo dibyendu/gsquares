@@ -1,10 +1,12 @@
+
 [Desktop Entry]
 Categories=Game;GTK;BoardGame;
-Name=GSquares
+Name=gsquares
 GenericName=Strategy Game
 Comment=Game of Box & Dots
-Exec=GSquares
+Exec=gsquares
 Icon=gsquares.png
 NoDisplay=false
 Terminal=false
 Type=Application
+Name[en_US]=gsquares
