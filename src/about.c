@@ -14,22 +14,27 @@
  */
 
 #include "gsquares.h"
+#include <sys/stat.h>
 
 char *
 file_to_string(const char *file) {
     FILE *fp;
-    char ch, *str = NULL;
-    long long char_count = 0;
+    char *str = NULL;
+    size_t index = 0;
 
     fp = fopen(file, "rb");
-    do {
-        str = (char *) realloc(str, sizeof (char) * (char_count + 1));
-        ch = fgetc(fp);
-        *(str + char_count) = ch;
-        char_count++;
-    } while (ch != EOF);
+
+    struct stat st;
+    stat (file, &st);
+
+    str = malloc ((st.st_size + 1) * sizeof (char));
+
+    while (!feof (fp))
+      *(str + index++) = fgetc (fp);
+
     fclose(fp);
-    *(str + --char_count) = '\0';
+    *(str + --index) = '\0';
+
     return str;
 }
 
