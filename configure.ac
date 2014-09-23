@@ -1,11 +1,12 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_PREREQ(2.67)
+AC_PREREQ(2.69)
 
-AC_INIT(src/main.c)
+AC_INIT([GSquares], [0.1])
+AC_CONFIG_SRCDIR([src/main.c])
+AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR(src/initializer.c)
 AC_CONFIG_HEADERS(config.h)
-AM_INIT_AUTOMAKE(GSquares, 0.1)
 AM_SANITY_CHECK
 
 AM_MAINTAINER_MODE
@@ -19,7 +20,8 @@ AC_CHECK_LIB(glib-2.0, g_timeout_add)
 AC_CHECK_LIB(gtk-x11-2.0, gtk_main)
 AC_CHECK_LIB(cairo, cairo_stroke)
 
-CFLAGS="-O3 -std=gnu99 -pipe `pkg-config --cflags --libs gtk+-2.0`"
+CFLAGS="-O3 -std=gnu99 -pipe `pkg-config --cflags gtk+-2.0`"
+LIBS="`pkg-config --libs gtk+-2.0` -lm"
 
 dnl we use -Wall if we have gcc
 if test "x$GCC" = "xyes"; then
@@ -29,7 +31,7 @@ if test "x$GCC" = "xyes"; then
 fi
 
 AC_SUBST(CFLAGS)
-AC_SUBST(LDFLAGS)
+AC_SUBST(LIBS)
 
 AC_CHECK_HEADERS(stdlib.h string.h time.h)
 
